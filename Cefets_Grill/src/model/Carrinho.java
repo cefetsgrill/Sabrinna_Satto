@@ -19,7 +19,7 @@ public class Carrinho {
     public BigDecimal calcularPrecototal(){
         BigDecimal precoTotal = new BigDecimal(0.00);
         for(Produto item : carrinho){
-            precoTotal = precoTotal.add(item.getPrecoProduto().multiply(item.getQuantidadeProduto()) ;
+           precoTotal = precoTotal.add(item.getPrecoProduto().multiply(BigDecimal.valueOf(item.getQuantidadeProduto())));;
         }
         return precoTotal;
     }
@@ -27,7 +27,7 @@ public class Carrinho {
     public void mostrarCarrinho(){
         System.out.println("--------------- CARRINHO ------------------ ");
         for(Produto item : carrinho){
-            double subTotal = item.getPrecoProduto() * item.getQuantidadeProduto();
+            BigDecimal subTotal = subTotal.add(item.getPrecoProduto().multiply(BigDecimal.valueOf(item.getQuantidadeProduto())));;
             // Printando o carrinho utilizando o loop for-each, a cada instância mostrando um produto diferente.
             System.out.println("Id: " + item.getIdProduto());
             System.out.println("Nome: " + item.getNomeProduto());

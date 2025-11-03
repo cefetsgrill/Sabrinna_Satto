@@ -1,4 +1,4 @@
-package model;
+package model.entity;
 
 import java.math.BigDecimal;
 
@@ -6,7 +6,7 @@ public class Item_Pedido {
 	private int id_item_pedido;
     private Pedido pedido;
     private Produto produto;
-    private int quantidade;
+    private Integer quantidade;
     private BigDecimal preco;
 
     // Calcula o subtotal do pedido para cada item especifico.

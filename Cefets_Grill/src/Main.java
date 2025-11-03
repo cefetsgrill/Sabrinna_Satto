@@ -1,9 +1,12 @@
-import model.*;
+import model.entity.*;
+import view.Menu;
+
+import java.math.BigDecimal;
 import java.util.Scanner;
 
-public class Main() {
+public class Main {
 
-	public void main() {
+    public static void main(String[] args) {
 	    // Scanner utilizado para entrada do usuário.
 	    Scanner scan = new Scanner(System.in);
 	    // Objeto da classe carrinho para armazenar os produtos.
@@ -50,9 +53,9 @@ public class Main() {
 	    }
 
 	}
-}
 
-// FuncSystem.outnalidades para aprimorar a modularização, separando todos os switchs para evitar o main de ficar gigantesco.
+
+// Funcionalidades para aprimorar a modularização, separando todos os switchs para evitar o main de ficar gigantesco.
 public static void processarPedidoPizza(Scanner scan, Menu menu, Carrinho carrinho) {
     menu.pizzaSubMenu();
     System.out.print("Digite sua opção: ");
@@ -65,22 +68,22 @@ public static void processarPedidoPizza(Scanner scan, Menu menu, Carrinho carrin
         case 1:
             System.out.println("Qual quantidade você deseja? ");
             quantidade = scan.nextInt();
-            Produto pizzaCalabresa = new Produto("Pizza de Calabresa",101,62.99, quantidade);
-            carrinho.adicSystem.outnarProduto(pizzaCalabresa);
+            Produto pizzaCalabresa = new Produto("Pizza de Calabresa",101,BigDecimal.valueOf(62.99));
+            carrinho.adicionarProduto(pizzaCalabresa, quantidade);
             System.out.println(">>>>>>>>>>>> Pizza de calabresa adicionada ao carrinho.");
             break;
         case 2:
         	System.out.println("Qual quantidade você deseja? ");
             quantidade = scan.nextInt();
-            Produto pizzaPortuguesa = new Produto("Pizza Portuguesa",102,67.99,quantidade);
-            carrinho.adicionarProduto(pizzaPortuguesa);
+            Produto pizzaPortuguesa = new Produto("Pizza Portuguesa",102,BigDecimal.valueOf(67.99));
+            carrinho.adicionarProduto(pizzaPortuguesa, quantidade);
             System.out.println(">>>>>>>>>>>> Pizza de portuguesa adicionada ao carrinho.");
             break;
         case 3:
             System.out.println("Qual quantidade você deseja? ");
             quantidade = scan.nextInt();
-            Produto pizzaHavaina = new Produto("Pizza Havaiana",103,69.99,quantidade);
-            carrinho.adicionarProduto(pizzaHavaina);
+            Produto pizzaHavaina = new Produto("Pizza Havaiana",103,BigDecimal.valueOf(69.99));
+            carrinho.adicionarProduto(pizzaHavaina, quantidade);
             System.out.println(">>>>>>>>>>>> Pizza Havaina adicionada ao carrinho.");
             break;
         default:
@@ -101,22 +104,22 @@ public static void processarPedidoOmeletes(Scanner scan, Menu menu, Carrinho car
         case 1:
             System.out.println("Qual quantidade você deseja? ");
             quantidade = scan.nextInt();
-            Produto omeletePresunto = new Produto("Omelete de Presunto",201,16.99, quantidade);
-            carrinho.adicionarProduto(omeletePresunto);
+            Produto omeletePresunto = new Produto("Omelete de Presunto",201,BigDecimal.valueOf(16.99));
+            carrinho.adicionarProduto(omeletePresunto, quantidade);
             System.out.println(">>>>>>>> Omelete de presunto adicionado ao carrinho. ");
             break;
         case 2:
             System.out.println("Qual quantidade você deseja? ");
             quantidade = scan.nextInt();
-            Produto omeleteQueijo = new Produto("Omelete de Queijo",202,17.99, quantidade);
-            carrinho.adicionarProduto(omeleteQueijo);
+            Produto omeleteQueijo = new Produto("Omelete de Queijo",202,BigDecimal.valueOf(17.99));
+            carrinho.adicionarProduto(omeleteQueijo, quantidade);
             System.out.println(">>>>>>>> Omelete de queijo adicionado ao carrinho. ");
             break;
         case 3:
             System.out.println("Qual quantidade você deseja? ");
             quantidade = scan.nextInt();
-            Produto omeletePresuntoQueijo = new Produto("Omelete de Presunto e Queijo",203,19.00, quantidade);
-            carrinho.adicionarProduto(omeletePresuntoQueijo);
+            Produto omeletePresuntoQueijo = new Produto("Omelete de Presunto e Queijo",203,BigDecimal.valueOf(19.00));
+            carrinho.adicionarProduto(omeletePresuntoQueijo, quantidade);
             System.out.println(">>>>>>>> Omelete de presunto e queijo adicionado ao carrinho. ");
             break;
         default:
@@ -127,32 +130,39 @@ public static void processarPedidoOmeletes(Scanner scan, Menu menu, Carrinho car
 
 public static void processarPedidoHamburguer(Scanner scan, Menu menu, Carrinho carrinho) {
     menu.hamburguerSubMenu();
-    IO.print("Digite sua opção: ");
+    System.out.print("Digite sua opção: ");
     int opcaoSubMenu = scan.nextInt();
     int quantidade = 0;
+    String entrada;
     switch (opcaoSubMenu) {
         case 0:
             System.out.println(">>>> Voltando ao menu principal.......");
             break;
         case 1:
             System.out.println("Qual quantidade você deseja? ");
+
             quantidade = scan.nextInt();
-            Produto xBacon = new Produto("X-Bacon",301,32.99, quantidade);
-            carrinho.adicionarProduto(xBacon);
+
+            Produto xBacon = new Produto("X-Bacon",301, BigDecimal.valueOf(32.99));
+            carrinho.adicionarProduto(xBacon, quantidade);
             System.out.print(">>>>>>>> X-Bacon adicionado ao carrinho. ");
             break;
         case 2:
             System.out.println("Qual quantidade você deseja? ");
+
             quantidade = scan.nextInt();
-            Produto xTudo = new Produto("X-Tudo",302,42.99, quantidade);
-            carrinho.adicionarProduto(xTudo);
+
+            Produto xTudo = new Produto("X-Tudo",302, BigDecimal.valueOf(42.99));
+            carrinho.adicionarProduto(xTudo, quantidade);
             System.out.println(">>>>>>>> X-Tudo adicionado ao carrinho. ");
             break;
         case 3:
             System.out.println("Qual quantidade você deseja? ");
+
             quantidade = scan.nextInt();
-            Produto xEgg = new Produto("X-Egg",303 ,30.99, quantidade);
-            carrinho.adicionarProduto(xEgg);
+
+            Produto xEgg = new Produto("X-Egg",303, BigDecimal.valueOf(30.99));
+            carrinho.adicionarProduto(xEgg, quantidade);
             System.out.println(">>>>>>>> X-Egg adicionado ao carrinho. ");
             break;
         default:
@@ -182,7 +192,7 @@ public static void processarCompra(Scanner scan,Menu menu, Carrinho carrinho) {
                 System.out.println("Quantas parcelas? (1 a 12, taxa de 5%)");
                 parcelas = scan.nextInt();
 
-                if(parcelas >=1 && parcelas <=12)
+                if(parcelas >= 1 && parcelas <= 12)
                     teste = 1;
                 else
                     System.out.println("Quantidade de parcelas inválidas!");
@@ -196,3 +206,5 @@ public static void processarCompra(Scanner scan,Menu menu, Carrinho carrinho) {
     }
 
 }
+}
+

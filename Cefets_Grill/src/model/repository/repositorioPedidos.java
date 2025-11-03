@@ -1,8 +1,8 @@
-package model;
+package model.repository;
 
 import java.util.ArrayList;
 import java.util.List;
-import model.Pedido;
+import model.entity.Pedido;
 
 public class repositorioPedidos
 {

@@ -1,8 +1,8 @@
-package model;
+package model.repository;
 
 import java.util.ArrayList;
 import java.util.List;
-import model.Cliente;
+import model.entity.Cliente;
 
 public class repositorioClientes
 {

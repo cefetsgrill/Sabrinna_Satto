@@ -1,4 +1,4 @@
-package model;
+package view;
 public class Menu {
     public void menuInicial(){
         System.out.println("===================== CARDAPIO =====================");

@@ -1,9 +1,11 @@
-package model;
+package model.entity;
+
+import java.math.BigDecimal;
 import java.util.UUID;
 
-public class Pix extends MetodoPagamento  {
+public class Pix extends MetodoPagamento {
     @Override
-    public void processarPagamento(double valorTotal) {
+    public void processarPagamento(BigDecimal valorTotal) {
 
         // Cria uma chave pix utilizando a biblioteca UUID do java que gera uma chave aleatória em cada novo pagamento.
         UUID chavePix = UUID.randomUUID();

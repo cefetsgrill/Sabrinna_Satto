@@ -3,6 +3,8 @@ import view.Menu;
 
 import java.math.BigDecimal;
 import java.util.Scanner;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Main {
 
@@ -175,9 +177,26 @@ public static void processarCompra(Scanner scan,Menu menu, Carrinho carrinho) {
     menu.finalizarCompraSubMenu();
     System.out.print("Digite sua opção: ");
     int opcaoSubMenu = scan.nextInt();
-    // Criação do obbjeto metodoPagamento para definição da forma de pagar.
+    
+    // Criação do objeto metodoPagamento para definição da forma de pagar.
     Pix pix = new Pix();
     Cartao cartao = new Cartao();
+    // Salvando o pedido depois de finalizar a compra.
+    Pedido pedido = new Pedido();
+    // Salvando os dados do cliente.
+    Cliente cliente = new Cliente();
+    // Nome.
+    System.out.println("Digite o seu nome: ");
+    String nomeCliente = scan.nextLine();
+    // Idade.
+    System.out.println("Digite a sua data de nascimento: (dd/mm/yy)");
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/mm/yy");
+    String dataNascimentoString = scan.nextLine();
+    LocalDate dataNascimentoUsuario = LocalDate.parse(dataNascimentoString,formatter);
+    // CPf
+    System.out.println("Digite o seu cpf: ");
+    
+
 
     switch (opcaoSubMenu) {
         case 1:

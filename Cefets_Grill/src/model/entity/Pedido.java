@@ -25,20 +25,19 @@ public class Pedido {
     }
 
     // Construtor.
-    public Pedido(int id_pedido, int id_cliente) {
-        this.id_pedido = id_pedido;
+    public Pedido() {
         // Pega o horario e data atual do sistema, no momento que o pedido foi gerado.
         this.data_hora_pedido = LocalDateTime.now();
     }
 
     // Getters.
     public int getId_pedido() { return id_pedido; }
-    public Cliente getId_cliente() { return cliente; }
+    public Cliente getCliente() { return cliente; }
     public LocalDateTime getData_hora_pedido() { return data_hora_pedido; }
     public List<Item_Pedido> getItems_pedido() { return itens_pedido; }
 
     // Setters.
     public void setId_pedido(int id_pedido) { this.id_pedido = id_pedido; }
-    public void setId_cliente(Cliente cliente) { this.cliente = cliente; }
+    public void setCliente(Cliente cliente) { this.cliente = cliente; }
     public void setItens_pedido(Item_Pedido itens_pedido) { this.itens_pedido.add(itens_pedido); }
 }

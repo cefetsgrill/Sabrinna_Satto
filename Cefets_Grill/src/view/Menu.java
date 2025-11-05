@@ -1,12 +1,14 @@
 package view;
 public class Menu {
     public void menuInicial(){
-        System.out.println("===================== CARDAPIO =====================");
+        System.out.println("===================== OPÇÔES =====================");
         System.out.println("===================== 1. Pizza =====================");
         System.out.println("===================== 2. Omelete =====================");
         System.out.println("===================== 3. Hamburguer =====================");
         System.out.println("==================== 4. Carrinho =====================");
         System.out.println("==================== 5. Finalizar Compra =====================");
+        System.out.println("===================== 6. Criar Usuario =====================");
+        System.out.println("===================== 7. Ver usuario =====================");
         System.out.println("===================== 0. Sair =====================");
     }
     public void pizzaSubMenu(){

@@ -5,6 +5,8 @@ import java.math.BigDecimal;
 import java.util.Scanner;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.Period;
 
 public class Main {
 
@@ -15,6 +17,8 @@ public class Main {
 	    Carrinho carrinho = new Carrinho();
 	    // Objeto da classe menu para chamar os menus.
 	    Menu menu = new Menu();
+        // Guardar o cliente novo;
+        Cliente clienteAtual = null;
 	
 	    // Variável opção para o usuário escolher.
 	    int opcaoPrincipal = -1;
@@ -27,6 +31,7 @@ public class Main {
 	        // Opção que o usuário irá entrar com.
 	        System.out.print("Escolha sua opção principal: ");
 	        opcaoPrincipal = scan.nextInt();
+            scan.nextLine();
 	
 	        // Condicional para a navegação entre menus.
 	        switch (opcaoPrincipal) {
@@ -40,14 +45,24 @@ public class Main {
 	                processarPedidoOmeletes(scan, menu, carrinho);
 	                break;
 	            case 3:
-	                processarPedidoHamburguer(scan, menu,carrinho);
+	                processarPedidoHamburguer(scan, menu, carrinho);
 	                break;
 	            case 4:
 	                carrinho.mostrarCarrinho();
 	                break;
 	            case 5:
-	                processarCompra(scan, menu,carrinho);
+	                processarCompra(scan, menu, carrinho);
 	                break;
+                case 6:
+                    clienteAtual = criarUsuario(scan);
+                    break;
+                case 7:
+                    if (clienteAtual != null) {
+                        mostrarCliente(clienteAtual);
+                    } else{
+                        System.out.println(">>>> Nenhum cliente foi criado ou selecionado ainda.");
+                    }
+                    break;
 	            default:
 	                System.out.println("Opção Inválida.");
 	                break;
@@ -177,27 +192,11 @@ public static void processarCompra(Scanner scan,Menu menu, Carrinho carrinho) {
     menu.finalizarCompraSubMenu();
     System.out.print("Digite sua opção: ");
     int opcaoSubMenu = scan.nextInt();
+    scan.nextLine();
     
     // Criação do objeto metodoPagamento para definição da forma de pagar.
     Pix pix = new Pix();
     Cartao cartao = new Cartao();
-    // Salvando o pedido depois de finalizar a compra.
-    Pedido pedido = new Pedido();
-    // Salvando os dados do cliente.
-    Cliente cliente = new Cliente();
-    // Nome.
-    System.out.println("Digite o seu nome: ");
-    String nomeCliente = scan.nextLine();
-    // Idade.
-    System.out.println("Digite a sua data de nascimento: (dd/mm/yy)");
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/mm/yy");
-    String dataNascimentoString = scan.nextLine();
-    LocalDate dataNascimentoUsuario = LocalDate.parse(dataNascimentoString,formatter);
-    // CPf
-    System.out.println("Digite o seu cpf: ");
-    
-
-
     switch (opcaoSubMenu) {
         case 1:
             pix.processarPagamento(carrinho.calcularPrecototal());
@@ -223,7 +222,45 @@ public static void processarCompra(Scanner scan,Menu menu, Carrinho carrinho) {
             System.out.println("Opção inválida.");
             break;
     }
+}
 
+public static Cliente criarUsuario(Scanner scan) {
+    // Salvando os dados do cliente.
+    Cliente cliente = new Cliente();
+    Pedido pedido = new Pedido();
+    // Nome.
+    System.out.println("Digite o seu nome: ");
+    String nomeCliente = scan.nextLine();
+    cliente.setNome_cliente(nomeCliente);
+    try {
+        // Idade.
+        System.out.println("Digite a sua data de nascimento: (dd/MM/yyyy)");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        String dataNascimentoString = scan.nextLine();
+        LocalDate dataNascimentoUsuario = LocalDate.parse(dataNascimentoString, formatter);
+
+        cliente.setData_nascimento(dataNascimentoUsuario);
+
+    } catch (DateTimeParseException e) {
+        System.out.println("Erro! Formato de data inválido. Use dd/MM/yyyy.");
+        return null;
+    }
+    // CPf.
+    System.out.println("Digite o seu cpf: ");
+    String cpfCliente = scan.nextLine();
+    cliente.setCpf_cliente(cpfCliente);
+
+    // Endereço.
+    System.out.println("Digite o seu endereco: ");
+    String enderecoCliente = scan.nextLine();
+    cliente.setEndereco_cliente(enderecoCliente);
+    pedido.setCliente(cliente);
+    mostrarCliente(cliente);
+    return cliente;
+}
+public static void mostrarCliente(Cliente cliente) {
+        System.out.println(cliente);
 }
 }
 

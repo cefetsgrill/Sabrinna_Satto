@@ -9,7 +9,7 @@ import java.time.*;
 public class Pedido {
     private int id_pedido;
     private Cliente cliente;
-    private LocalDateTime data_hora_pedido; // Ao invés de dois atributos diferentes, utiliza apenas um para facilitar.
+    private LocalDateTime data_hora_pedido;
     private List<Item_Pedido> itens_pedido = new ArrayList<>();
 
     // Calcula o valor total do pedido.
